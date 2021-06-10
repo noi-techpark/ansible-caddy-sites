@@ -12,7 +12,7 @@
 
   {% if site['tls_dns'] %}
   tls {
-    dns {{ site['tls_dns']['provider'] }} {{ site['tls_dns']['config'] }}
+    dns {{ site['tls_dns']['provider'] }} {% if site['tls_dns']['config'] %}{{ site['tls_dns']['config'] }}{% endif %}
   }
   {% endif %}
 
