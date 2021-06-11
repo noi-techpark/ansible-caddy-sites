@@ -2,7 +2,7 @@
   reverse_proxy {
     to {{ site['destination_url'] }}
 
-{% if site['tls_dns']['header_host'] is defined %}    header_up +Host {{ site['header_host'] }}{% endif %} 
+{% if site['header_host'] is defined %}    header_up +Host {{ site['header_host'] }}{% endif %} 
   }
 
   log {
