@@ -1,5 +1,9 @@
 {{ site['domain_name'] }} {
-  reverse_proxy {{ site['destination_url'] }}
+  reverse_proxy {
+    to {{ site['destination_url'] }}
+
+{% if site['tls_dns']['header_host'] is defined %}    header_up +Host {{ site['header_host'] }}{% endif %} 
+  }
 
   log {
     output file /var/log/caddy/{{ site['domain_name'] }}-access.log {
@@ -10,10 +14,9 @@
     format json
   }
 
-  {% if site['tls_dns'] is defined %}
+{% if site['tls_dns'] is defined %}
   tls {
-    dns {{ site['tls_dns']['provider'] }} {% if site['tls_dns']['config'] is defined %}{{ site['tls_dns']['config'] }}{% endif %}
+    dns {{ site['tls_dns']['provider'] }}{% if site['tls_dns']['config'] is defined %} {{ site['tls_dns']['config'] }}{% endif %} 
   }
-  {% endif %}
-
+{% endif %}
 }
