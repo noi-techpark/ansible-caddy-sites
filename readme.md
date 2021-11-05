@@ -19,7 +19,10 @@ Configure Caddy sites role.
             destination_url: https://example.com
           - domain_name: "test2.example.com"
             destination_url: https://example.com
-            header_host: example.com
+            headers_up:
+              - operation: +
+                field: Host
+                value: example.com
             tls_dns:
               provider: digitalocean
               config: xxx
