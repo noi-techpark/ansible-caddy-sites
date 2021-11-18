@@ -1,5 +1,5 @@
 {{ site['domain_name'] }} {
-  redir {{ site['destination_url'] }}{uri}{% if site['permanent'] is defined && site['permanent'] %} permanent{% endif %}
+  redir {{ site['destination_url'] }}{uri}{% if site['permanent'] is defined and site['permanent'] %} permanent{% endif %}
 
   log {
     output file /var/log/caddy/{{ site['domain_name'] }}-access.log {
