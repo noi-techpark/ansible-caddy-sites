@@ -1,0 +1,4 @@
+{{ site['domain_name'] }} {
+  redir {
+    to {{ site['destination_url'] }}{uri}{% if site['permanent'] is defined && site['permanent'] %} permanent{% endif %}
+}

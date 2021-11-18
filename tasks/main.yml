@@ -10,6 +10,17 @@
   loop_control:
     loop_var: site
 
+- name: Setup redirect sites
+  ansible.builtin.template:
+    src: redirect.j2
+    dest: /etc/caddy/conf.d/{{ site['domain_name'] }}.caddy
+    owner: root
+    group: root
+    mode: 0644
+  loop: "{{ caddy_sites_redirect }}"
+  loop_control:
+    loop_var: site
+
 - name: Reload Caddy service
   ansible.builtin.systemd:
     name: caddy
