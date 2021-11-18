@@ -29,6 +29,9 @@ Configure Caddy sites role.
         caddy_sites_redirect:
           - domain_name: "test1.example.com"
             destination_url: https://example.com
+            tls_dns:
+              provider: digitalocean
+              config: xxx
           - domain_name: "test2.example.com"
             destination_url: https://example.com
             permanent: true
