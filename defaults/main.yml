@@ -1,2 +1,3 @@
 ---
 caddy_sites_reverse_proxy: []
+caddy_sites_redirect: []
