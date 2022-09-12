@@ -11,8 +11,9 @@ Configure Caddy sites role.
 
 ```yaml
 - hosts: all
-  roles:
-    - role: ansible-caddy-sites
+  tasks:
+    - ansible.builtin.include_role:
+        name: ansible-caddy-sites
       vars:
         caddy_sites_reverse_proxy:
           - domain_name: "test1.example.com"
