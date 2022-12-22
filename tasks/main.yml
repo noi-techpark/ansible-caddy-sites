@@ -1,4 +1,52 @@
 ---
+- name: Copy private keys for reverse proxy sites
+  ansible.builtin.copy:
+    content: "{{ site['tls_certificate']['private_key'] }}"
+    dest: /etc/caddy/certificate/{{ site['domain_name'] }}-key.pem
+    owner: root
+    group: root
+    mode: 0644
+  when: site['tls_certificate'] is defined
+  loop: "{{ caddy_sites_reverse_proxy | default([]) }}"
+  loop_control:
+    loop_var: site
+
+- name: Copy certificates for reverse proxy sites
+  ansible.builtin.copy:
+    content: "{{ site['tls_certificate']['certificate'] }}"
+    dest: /etc/caddy/certificate/{{ site['domain_name'] }}-cert.pem
+    owner: root
+    group: root
+    mode: 0644
+  when: site['tls_certificate'] is defined
+  loop: "{{ caddy_sites_reverse_proxy | default([]) }}"
+  loop_control:
+    loop_var: site
+
+- name: Copy private keys for redirect sites
+  ansible.builtin.copy:
+    content: "{{ site['tls_certificate']['private_key'] }}"
+    dest: /etc/caddy/certificate/{{ site['domain_name'] }}-key.pem
+    owner: root
+    group: root
+    mode: 0644
+  when: site['tls_certificate'] is defined
+  loop: "{{ caddy_sites_redirect | default([]) }}"
+  loop_control:
+    loop_var: site
+
+- name: Copy certificates for redirect sites
+  ansible.builtin.copy:
+    content: "{{ site['tls_certificate']['certificate'] }}"
+    dest: /etc/caddy/certificate/{{ site['domain_name'] }}-cert.pem
+    owner: root
+    group: root
+    mode: 0644
+  when: site['tls_certificate'] is defined
+  loop: "{{ caddy_sites_redirect | default([]) }}"
+  loop_control:
+    loop_var: site
+
 - name: Setup reverse proxy sites
   ansible.builtin.template:
     src: reverse_proxy.j2

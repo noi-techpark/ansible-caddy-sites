@@ -35,6 +35,11 @@ Configure Caddy sites role.
               config: xxx
           - domain_name: "test2.example.com"
             destination_url: https://example.com
+            tls_certificate:
+              private_key: private-key-content
+              certificate: certificate-content
+          - domain_name: "test2.example.com"
+            destination_url: https://example.com
             permanent: true
 ```
 

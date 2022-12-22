@@ -15,4 +15,7 @@
     dns {{ site['tls_dns']['provider'] }}{% if site['tls_dns']['config'] is defined %} {{ site['tls_dns']['config'] }}{% endif %} 
   }
 {% endif %}
+{% if site['tls_certificate'] is defined %}
+  tls /etc/caddy/certificates/{{ site['domain_name'] }}-cert.pem /etc/caddy/certificates/{{ site['domain_name'] }}-key.pem
+{% endif %}
 }
