@@ -58,8 +58,8 @@ git push --tags
 Replacing an already existing minor release:
 
 ```bash
-git tag -d 1.0
-git push origin :refs/tags/1.0
-git tag 1.0
+git tag -d 2.0
+git push origin :refs/tags/2.0
+git tag 2.0
 git push --tags
 ```
