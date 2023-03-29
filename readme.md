@@ -15,11 +15,16 @@ Configure Caddy sites role.
     - ansible.builtin.include_role:
         name: ansible-caddy-sites
       vars:
+        compression: true
         caddy_sites_reverse_proxy:
           - domain_name: "test1.example.com"
             destination_url: https://example.com
           - domain_name: "test2.example.com"
             destination_url: https://example.com
+            rewrite: 
+              - rule: /foo /bar
+            alias:
+              domain: www.test1.example.com
             headers_up:
               - operation: +
                 field: Host
@@ -27,6 +32,7 @@ Configure Caddy sites role.
             tls_dns:
               provider: digitalocean
               config: xxx
+            compression: false
         caddy_sites_redirect:
           - domain_name: "test1.example.com"
             destination_url: https://example.com
