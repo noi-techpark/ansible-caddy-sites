@@ -1,4 +1,4 @@
-{{ site['domain_name'] }} {
+{{ site['domain_name'] }}{% if site['alias'] is defined %}{% for alias in site['alias'] %}, {{ alias['domain'] }}{% endfor %}{% endif %} {
   redir {{ site['destination_url'] }}{uri}{% if site['permanent'] is defined and site['permanent'] %} permanent{% endif %}
 
   log {

@@ -16,8 +16,7 @@
   }
 
 {# Check for global or local compression option #}
-{% if (compression is defined and compression == true 
-     and not (site.compression is defined and site.compression != true)) 
+{% if (compression == true and not (site.compression is defined and site.compression != true)) 
      or (site.compression is defined and site.compression == true) %} 
   encode zstd gzip 
 {% endif %}
