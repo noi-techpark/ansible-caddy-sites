@@ -21,12 +21,6 @@
   encode zstd gzip 
 {% endif %}
 
-{% if site['rewrite'] is defined %}
-{% for rewrite_rule in site['rewrite'] %}
-   rewrite {{ rewrite_rule.rule }}
-{% endfor %}
-{% endif %}
-
   log {
     output file /var/log/caddy/{{ site['domain_name'] }}-access.log {
       roll_size 50MiB
