@@ -21,8 +21,6 @@ Configure Caddy sites role.
             destination_url: https://example.com
           - domain_name: "test2.example.com"
             destination_url: https://example.com
-            rewrite: 
-              - rule: /foo /bar
             alias:
               domain: www.test1.example.com
             headers_up:
